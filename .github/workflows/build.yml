@@ -102,9 +102,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          release_name: latest
+          release_name: ${{ env.RELEASE_NAME }}
           tag: latest
           file_glob: true
           overwrite: true
           file: ./publish/*
-          body: ${{ env.RELEASE_NAME }}
