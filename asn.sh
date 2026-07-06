@@ -19,7 +19,7 @@ while IFS= read -r line; do
     curl -sSfL --retry 5 --retry-delay 2 --retry-all-errors ${url} -o ./tmp/${filename}-${asn}.txt \
       -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'
     echo "::group::${asn}"
-    cat "/tmp/${filename}-${asn}.txt"
+    cat "./tmp/${filename}-${asn}.txt"
     echo "::endgroup::"
     jq --raw-output '.data.prefixes.v4.originating[]' ./tmp/${filename}-${asn}.txt | sort -u >>${file}
     jq --raw-output '.data.prefixes.v6.originating[]' ./tmp/${filename}-${asn}.txt | sort -u >>${file}
