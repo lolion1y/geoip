@@ -5,6 +5,7 @@ mkdir -p ./tmp ./data
 
 while IFS= read -r line; do
   filename=$(echo ${line} | awk -F ',' '{print $1}')
+  [[ "${line}" =~ ^# ]] && echo "skip: \"${line}\"" && continue
   IFS='|' read -r -a asns <<<$(echo ${line} | awk -F ',' '{print $2}')
   file="data/${filename}"
 
